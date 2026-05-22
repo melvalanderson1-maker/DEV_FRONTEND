@@ -163,10 +163,14 @@ const cargarProveedoresIniciales = async () => {
         );
 
         const mapped = res.data.map((p) => ({
-            value: `${p.ruc_proveedor} ${p.razon_social_proveedor}`,
-            label: `${p.ruc_proveedor} - ${p.razon_social_proveedor}`
-        }));
+            value: `${p.ruc_proveedor}|||${p.razon_social_proveedor}`,
 
+            label: `${p.ruc_proveedor} - ${p.razon_social_proveedor}`,
+
+            ruc: p.ruc_proveedor,
+
+            razon: p.razon_social_proveedor
+        }));
 
 
         setProveedorOptions(mapped);
@@ -729,6 +733,8 @@ onChange={(selected) => {
 
                         <label>Proveedor</label>
                             <AsyncSelect
+
+                                key={filters.proveedor}
 
                                 
 
