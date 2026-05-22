@@ -1,68 +1,124 @@
-/* RESET BASE */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* =========================================
+   RESET
+========================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden;
+html,
+body,
+#root{
+
+    width:100%;
+    min-height:100%;
+
+    font-family:
+        Inter,
+        system-ui,
+        sans-serif;
+
+    background:var(--bg-secondary);
+
+    color:var(--text-main);
+
+    overflow-x:hidden;
 }
 
-/* CONTENEDOR PRINCIPAL */
-.layout {
-    display: flex;
-    min-height: 100vh;
+body{
+    transition:background .25s ease;
 }
 
-/* SIDEBAR */
-.sidebar {
-    width: 240px;
-    background: #0f172a; /* azul oscuro profesional */
-    color: white;
+/* =========================================
+   VARIABLES
+========================================= */
 
-    padding: 20px;
+:root{
 
-    display: flex;
-    flex-direction: column;
-
-    position: fixed;
-    height: 100vh;
+    --sidebar-width:270px;
+    --sidebar-collapsed:88px;
 }
 
-/* CONTENIDO */
-.content {
-    flex: 1;
-    margin-left: 240px;
-    padding: 25px;
-    width: calc(100% - 240px);
+/* =========================================
+   LAYOUT
+========================================= */
+
+.layout{
+
+    min-height:100vh;
+
+    background:var(--bg-secondary);
 }
 
-/* RESPONSIVE TABLET */
-@media (max-width: 768px) {
+/* =========================================
+   CONTENT
+========================================= */
 
-    .sidebar {
-        width: 80px;
-        padding: 15px;
+.layout-content{
+
+    min-height:100vh;
+
+    margin-left:var(--sidebar-width);
+
+    padding:28px;
+
+    transition:
+        margin-left .25s ease,
+        padding .25s ease;
+}
+
+/* =========================================
+   SIDEBAR COLLAPSED
+========================================= */
+
+.layout-content.expanded{
+
+    margin-left:var(--sidebar-collapsed);
+}
+
+/* =========================================
+   LAPTOP
+========================================= */
+
+@media (max-width:1400px){
+
+    .layout-content{
+        padding:24px;
     }
+}
 
-    .content {
-        margin-left: 80px;
-        padding: 15px;
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width:1024px){
+
+    .layout-content{
+
+        margin-left:0 !important;
+
+        padding-top:92px;
+
+        padding-left:18px;
+        padding-right:18px;
+        padding-bottom:18px;
     }
 }
 
-/* RESPONSIVE MOBILE */
-@media (max-width: 480px) {
+/* =========================================
+   MOBILE
+========================================= */
 
-    .sidebar {
-        width: 60px;
-    }
+@media (max-width:640px){
 
-    .content {
-        margin-left: 60px;
+    .layout-content{
+
+        padding-top:88px;
+
+        padding-left:14px;
+        padding-right:14px;
+        padding-bottom:14px;
     }
 }

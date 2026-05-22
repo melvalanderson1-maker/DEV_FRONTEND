@@ -1,0 +1,359 @@
+.erp-container {
+    padding: 30px;
+    font-family: system-ui;
+    background: #f6f7fb;
+}
+
+/* HEADER */
+.erp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/* BOTÓN */
+.btn-primary {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 15px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* BADGES */
+.badge {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.potencial { background: #fef3c7; }
+.activo { background: #dcfce7; }
+.inactivo { background: #fee2e2; }
+
+/* ACTIONS */
+.actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.actions button {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    cursor: pointer;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(6px);
+}
+
+/* MODAL */
+.modal {
+    background: white;
+    padding: 20px;
+    width: 420px;
+    border-radius: 12px;
+    animation: fadeIn 0.15s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* FORM */
+.form input,
+.form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+/* MODAL ACTIONS */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-green {
+    background: #16a34a;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+}
+
+.btn-gray {
+    background: #64748b;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+}
+
+/* LOADER */
+.loader-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    width: 45px;
+    height: 45px;
+    border: 4px solid #ccc;
+    border-top: 4px solid #2563eb;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* TOAST */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #111;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.error {
+    color: #dc2626;
+    font-size: 12px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+
+/* ================= ERP TOOLBAR ================= */
+.erp-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+/* SEARCH BOX */
+.search-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background: white;
+    padding: 10px 14px;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid #e5e7eb;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    background: transparent;
+}
+
+/* FILTER BOX */
+.filter-box {
+    display: flex;
+    gap: 8px;
+    background: white;
+    padding: 6px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid #e5e7eb;
+}
+
+/* PILLS */
+.filter-pill {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+    color: #64748b;
+}
+
+.filter-pill:hover {
+    background: #f1f5f9;
+}
+
+.filter-pill.active {
+    background: #2563eb;
+    color: white;
+    font-weight: 500;
+}
+
+/* CLEAN BUTTON ERP STYLE */
+.clear-btn {
+    border: none;
+    background: #f1f5f9;
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 14px;
+    transition: 0.2s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #475569;
+}
+
+.clear-btn:hover {
+    background: #e2e8f0;
+    transform: translateY(-1px);
+    color: #2563eb;
+}
+
+.clear-btn:hover {
+    background: #e2e8f0;
+    transform: scale(1.05);
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-right: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-footer-meta {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #eef2f7;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    font-size: 12px;
+    color: #64748b;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+
+
+
+
+
+.col-subtotal{
+    min-width:220px;
+}
+
+.col-subtotal-header{
+    text-align:center;
+}
+
+.subtotal-total-header{
+    font-size:13px;
+    margin-top:4px;
+    font-weight:700;
+    color:#00b894;
+}
+
+.subtotal-cell{
+    position:relative;
+    overflow:hidden;
+    border-radius:8px;
+    height:42px;
+    display:flex;
+    align-items:center;
+}
+
+.subtotal-bar{
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+    background:#00d084;
+    opacity:.25;
+    border-radius:8px;
+}
+
+.subtotal-content{
+    position:relative;
+    z-index:2;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 10px;
+    font-weight:600;
+}
+
+.subtotal-percent{
+    color:#008f5a;
+    font-size:13px;
+}

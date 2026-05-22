@@ -1,0 +1,36 @@
+:root {
+    --bg: #f5f7fb;
+    --panel: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: rgba(0,0,0,0.08);
+    --primary: #2563eb;
+}
+
+/* DARK MODE */
+[data-theme="dark"] {
+    --bg: #0b1220;
+    --panel: #0f172a;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: rgba(255,255,255,0.08);
+    --primary: #3b82f6;
+}
+
+/* 🔥 FIX CRÍTICO ICONOS LUCIDE */
+svg {
+    color: inherit;
+    stroke: currentColor;
+}
+
+/* GLOBAL SMOOTH */
+* {
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}

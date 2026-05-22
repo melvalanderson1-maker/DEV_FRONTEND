@@ -17,6 +17,11 @@
   }
 }
 
+
+svg {
+    color: inherit !important;
+    stroke: currentColor;
+}
 .hero {
   position: relative;
 

@@ -1,33 +1,83 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Login from "../pages/Login";
-import AdminPage from "../pages/AdminPage";
-import UsuarioPage from "../pages/UsuarioPage";
 
-export default function RouterApp(){
+import Layout from "../layout/Layout";
 
-    return(
-        <BrowserRouter>
+import ProtectedRoute from "../auth/ProtectedRoute";
+import PermissionRoute from "../auth/PermissionRoute";
 
-            <Routes>
+import DashboardPage from "../modules/dashboard/pages/DashboardPage";
+import ProductosPage from "../modules/productos/pages/ProductosPage";
+import UsuariosPage from "../modules/usuarios/pages/UsuariosPage";
+import ReportesPage from "../modules/reportes/pages/ReportesPage";
+import ComprasPage from "../modules/compras/pages/ComprasPage";
+
+export default function RouterApp() {
+
+    return (
+
+        <Routes>
+
+            <Route path="/" element={<Login />} />
+
+            <Route
+                path="/dashboard"
+                element={
+                    <ProtectedRoute>
+                        <Layout />
+                    </ProtectedRoute>
+                }
+            >
 
                 <Route
-                    path="/"
-                    element={<Login />}
+                    index
+                    element={
+                        <PermissionRoute permiso="dashboard">
+                            <DashboardPage />
+                        </PermissionRoute>
+                    }
                 />
 
                 <Route
-                    path="/admin"
-                    element={<AdminPage />}
+                    path="productos"
+                    element={
+                        <PermissionRoute permiso="productos">
+                            <ProductosPage />
+                        </PermissionRoute>
+                    }
                 />
 
                 <Route
-                    path="/usuario"
-                    element={<UsuarioPage />}
+                    path="usuarios"
+                    element={
+                        <PermissionRoute permiso="usuarios">
+                            <UsuariosPage />
+                        </PermissionRoute>
+                    }
                 />
 
-            </Routes>
+                <Route
+                    path="reportes"
+                    element={
+                        <PermissionRoute permiso="reportes">
+                            <ReportesPage />
+                        </PermissionRoute>
+                    }
+                />
 
-        </BrowserRouter>
+                <Route
+                    path="compras"
+                    element={
+                        <PermissionRoute permiso="compras">
+                            <ComprasPage />
+                        </PermissionRoute>
+                    }
+                />
+
+            </Route>
+
+        </Routes>
+
     );
 }
