@@ -11,7 +11,7 @@ export default function RankingProveedoresTable({
 
     const [data, setData] = useState([]);
 
-    useEffect(() => {
+useEffect(() => {
         const fetchData = async () => {
             const res = await api.get("/api/analytics/proveedores", {
                 params: filters
@@ -20,7 +20,8 @@ export default function RankingProveedoresTable({
         };
 
         fetchData();
-    }, [filters]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(filters)]);
 
 
 

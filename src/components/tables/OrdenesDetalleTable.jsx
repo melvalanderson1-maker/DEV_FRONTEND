@@ -13,7 +13,7 @@ export default function OrdenesDetalleTable({
 
     const [data, setData] = useState([]);
 
-    useEffect(() => {
+useEffect(() => {
         const fetchData = async () => {
             const res = await api.get(
                 "/api/analytics/ordenes-detalle",
@@ -24,14 +24,12 @@ export default function OrdenesDetalleTable({
                     }
                 }
             );
-
             setData(res.data);
-
-            console.log(res.data[0]);
         };
 
         fetchData();
-    }, [filters]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(filters), page]);
 
     return (
         <div className="table-container">

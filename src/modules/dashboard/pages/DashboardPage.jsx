@@ -184,27 +184,19 @@ const cargarProveedoresIniciales = async () => {
 // =========================
 // FILTROS DINAMICOS
 // =========================
-const cargarFiltrosDinamicos = async () => {
+const cargarFiltrosDinamicos = async (currentFilters) => {
     try {
 
-        // 🔥 CLON SIN CATEGORIA (IMPORTANTE)
-        const { categoria, ...filtersSinCategoria } = filters;
+        // Si hay nro_parte activo, no necesitamos filtros dinámicos
+        if (currentFilters.nro_parte && currentFilters.nro_parte.trim()) {
+            return;
+        }
+
+        const { categoria, ...filtersSinCategoria } = currentFilters;
 
         const res = await api.get(
             "/api/analytics/filtros-dinamicos",
-            {
-                params: {
-                ...filtersSinCategoria,
-
-                anio: Array.isArray(filters.anio)
-                    ? filters.anio.join(",")
-                    : "",
-
-                mes: Array.isArray(filters.mes)
-                    ? filters.mes.join(",")
-                    : ""
-            }
-            }
+            { params: filtersSinCategoria }
         );
 
         setCategorias(res.data.categorias);
@@ -244,15 +236,12 @@ const debouncedLoadData = useMemo(
         debounce(async (currentFilters) => {
 
             await Promise.all([
-
                 cargarKpis(currentFilters),
-
                 cargarEntidades(currentFilters),
-
+                cargarFiltrosDinamicos(currentFilters),
                 currentFilters.nro_parte.trim()
                     ? buscarNroParte(currentFilters)
                     : Promise.resolve()
-
             ]);
 
         }, 400),
@@ -306,45 +295,22 @@ const debouncedNroParte = useMemo(
     // =========================
     // CARGAR FILTROS DINAMICOS
     // =========================
-    useEffect(() => {
-
-        const delayed = setTimeout(() => {
-
-            cargarFiltrosDinamicos();
-
-        }, 250);
-
-        return () => clearTimeout(delayed);
-
-    }, [filters, debouncedLoadData]);
-
-
-
 useEffect(() => {
 
     const currentFilters = {
         ...filters,
-
-        anio: Array.isArray(filters.anio)
-            ? filters.anio.join(",")
-            : "",
-
-        mes: Array.isArray(filters.mes)
-            ? filters.mes.join(",")
-            : ""
+        anio: Array.isArray(filters.anio) ? filters.anio.join(",") : "",
+        mes:  Array.isArray(filters.mes)  ? filters.mes.join(",")  : ""
     };
 
     debouncedLoadData(currentFilters);
 
-    if (!filters.nro_parte.trim()) {
-        setResultadoParte(null);
-    }
+    if (!filters.nro_parte.trim()) setResultadoParte(null);
 
-    return () => {
-        debouncedLoadData.cancel();
-    };
+    return () => { debouncedLoadData.cancel(); };
 
-}, [filters]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [JSON.stringify(filters)]);
 
         // ====================================
         // INPUT -> FILTRO GLOBAL
