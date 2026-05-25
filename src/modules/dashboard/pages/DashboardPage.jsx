@@ -187,11 +187,6 @@ const cargarProveedoresIniciales = async () => {
 const cargarFiltrosDinamicos = async (currentFilters) => {
     try {
 
-        // Si hay nro_parte activo, no necesitamos filtros dinámicos
-        if (currentFilters.nro_parte && currentFilters.nro_parte.trim()) {
-            return;
-        }
-
         const { categoria, ...filtersSinCategoria } = currentFilters;
 
         const res = await api.get(
@@ -234,18 +229,18 @@ const cargarFiltrosDinamicos = async (currentFilters) => {
 const debouncedLoadData = useMemo(
     () =>
         debounce(async (currentFilters) => {
-
-            await Promise.all([
+            // 🔥 KPIs y entidades primero — rápidos
+            Promise.all([
                 cargarKpis(currentFilters),
                 cargarEntidades(currentFilters),
-                cargarFiltrosDinamicos(currentFilters),
                 currentFilters.nro_parte.trim()
                     ? buscarNroParte(currentFilters)
                     : Promise.resolve()
             ]);
 
+            // 🔥 Filtros dinámicos por separado — no bloquea la UI
+            cargarFiltrosDinamicos(currentFilters);
         }, 400),
-
     []
 );
 
